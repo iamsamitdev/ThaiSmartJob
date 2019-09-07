@@ -1,0 +1,173 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    
+    <ion-title>{{'upgrade_level'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button style="   float: right;
+  bottom: 10px;
+  z-index: 5555;
+  right: 10px;
+  position: fixed;
+" color="success" chape="round"
+    (click)="upgrade_alert(responseData.id,responseData.to_level,responseData.money,responseData.bank)"
+    class="btn-smartjob-small-action" *ngIf="responseData.is_upgrade==1">{{'noti_upgrade'|translate}}</ion-button>
+
+  <ion-button style="   float: left;
+    bottom: 10px;
+    z-index: 5555;
+    left: 10px;
+    position: fixed;
+  " color="dark" chape="round" (click)="close()" class="btn-smartjob-small-action">{{'close_page'|translate}}
+  </ion-button>
+
+  <ion-row class="row b_top">
+    <div class="b_top_content">
+      <img src="{{avatar_welcome}}" style="width: 80px;height: 80px;" alt="">
+      <div class="box-c-right" style="color:#fff">
+        <h2>{{'payment_to'|translate}}</h2>
+        <p class="p_home_top">{{responseData.fullname}}</p>
+      </div>
+    </div>
+
+  </ion-row>
+  <ion-card class="not-upgrade" *ngIf="responseData.is_upgrade==0">
+    {{'noti_3day'|translate}}
+  </ion-card>
+  <ion-card class="not-upgrade" *ngIf="responseData.is_upgrade==2">
+    {{'noti_24h'|translate}}
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+      <ion-card-title>{{'data_upgrade'|translate}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="list2">
+        <div>
+          <span class="item-list">
+            {{'upgrade_to'|translate}}
+          </span>
+          <span class="item-list"> Level
+            {{responseData.to_level}}
+          </span>
+        </div>
+        <div>
+          <span class="item-list">
+            {{'amount_total'|translate}}
+          </span>
+          <span class="item-list">
+            {{responseData.money}} {{'baht'|translate}}
+          </span>
+        </div>
+        <div>
+          <span class="item-list">
+            {{'payment_to'|translate}}
+          </span>
+          <span class="item-list">
+            {{responseData.fullname}}
+          </span>
+        </div>
+      </div>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <h2 text-center style="color: red;">
+        {{'noti_upline'|translate}}
+      </h2>
+    </ion-card-content>
+
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
+      <ion-card-title>{{'data_contact'|translate}}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngIf="responseData.mobile!=''" (click)="call_number(responseData.mobile)">
+          {{'phone'|translate}} :
+          <span slot="end">
+            <strong>
+              {{responseData.mobile}}
+            </strong></span>
+        </ion-item>
+        <ion-item>
+          {{'email'|translate}} :
+          <span slot="end">
+            <strong>
+              {{responseData.email}} <ion-icon name="copy" (click)="copy(responseData.email)"></ion-icon>
+            </strong></span>
+        </ion-item>
+        <ion-item *ngIf="responseData.fbprofile!=''" (click)="facebook(responseData.fbprofile)">
+          Messanger :
+          <span slot="end">m.me/{{responseData.fbprofile}}</span>
+        </ion-item>
+        <ion-item *ngIf="responseData.lineid!=''">
+          LINE ID :
+          <a slot="end" href="http://line.me/ti/p/~{{responseData.lineid}}">
+            <span>{{responseData.lineid}}</span></a>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{'payment_method'|translate}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item>{{'bank'|translate}}
+          <span slot="end">
+            <strong>
+              <span *ngIf="responseData.bank=='kbank'">{{'kbank'|translate}}</span>
+              <span *ngIf="responseData.bank=='scb'">{{'scb'|translate}}</span>
+              <span *ngIf="responseData.bank=='bbl'">{{'bbl'|translate}}</span>
+              <span *ngIf="responseData.bank=='tmb'">{{'tmb'|translate}}</span>
+              <span *ngIf="responseData.bank=='bay'">{{'bay'|translate}}</span>
+              <span *ngIf="responseData.bank=='ktb'">{{'ktb'|translate}}</span>
+              <span *ngIf="responseData.bank=='gsb'">{{'gsb'|translate}}</span>
+              <span *ngIf="responseData.bank=='tbank'">{{'tbank'|translate}}</span>
+              <span *ngIf="responseData.bank=='uob'">{{'uob'|translate}}</span>
+              <span *ngIf="responseData.bank=='cimb'">{{'cimb'|translate}}</span>
+              <span *ngIf="responseData.bank=='kkp'">{{'kkp'|translate}}</span>
+              <span *ngIf="responseData.bank=='tisco'">{{'tisco'|translate}}</span>
+              <span *ngIf="responseData.bank=='ghb'">{{'ghb'|translate}}</span>
+              <span *ngIf="responseData.bank=='baac'">{{'baac'|translate}}</span>
+            </strong>
+
+          </span>
+        </ion-item>
+        <ion-item> {{'bank_account'|translate}}
+          <span slot="end">
+            <strong>
+              {{responseData.bank_account}} <ion-icon name="copy" (click)="copy(responseData.bank_account)"></ion-icon>
+            </strong>
+          </span>
+
+        </ion-item>
+        <ion-item>PayPal
+          <span slot="end" (click)="paypal(responseData.paypal_account)">
+            <strong>
+              paypal.me/{{responseData.paypal_account}}
+            </strong>
+
+          </span>
+        </ion-item>
+      </ion-list>
+
+    </ion-card-content>
+  </ion-card>
+
+  <div style="height: 50px;width: 100%;"></div>
+</ion-content>

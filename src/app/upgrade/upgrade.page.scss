@@ -1,0 +1,193 @@
+.member_new{
+  color:red;
+  border:solid 1px #e65100;
+  margin:5px;
+  border-radius: 5px;
+  padding:5px 10px;
+}
+.not-upgrade {
+  border-radius: 10px;
+  font-size: 16px;
+  padding: 10px;
+  margin: 10px;
+  color: #fff;
+  background-color: #a03d3d;
+  text-align: center;
+}
+.list2 {
+  .item-list {
+    width: 48%;
+    display: inline-block;
+    font-size: 16px;
+  }
+}
+
+.b_top {
+  height: 150px;
+  background: url("/assets/imgs/bg_home.jpg");
+  background-size: cover;
+  background-position: fixed;
+  background-color: orangered;
+}
+.b_top_content {
+  padding-top: 30px;
+  padding-left: 20px;
+  overflow: hidden;
+}
+
+.b_top_content img {
+  width: 80px;
+  border-radius: 50%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
+  border: 2px solid #fff;
+}
+
+.box-c-right {
+  display: inline-block;
+}
+
+.b_top_content h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.b_top_content p {
+  margin-top: 0px;
+}
+
+.box-hf {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+}
+
+.hf1 {
+  background-color: #e65100;
+}
+
+.hf2 {
+  background-color: #0288d1;
+}
+
+.box-cq {
+  background-color: #3e9442;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.box-cq-last {
+  background-color: #3e9442;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  border-bottom: 3px solid #fff;
+}
+
+.box-cf {
+  height: 150px;
+  border-bottom: 3px solid #fff;
+  text-align: right;
+}
+.box-cf h2 {
+  font-size: 24px;
+  padding: 0px 20px;
+}
+.box-full-1 {
+  background: url("/assets/imgs/bg_home1.jpg");
+  background-size: cover;
+  background-position: fixed;
+  color: #fff;
+}
+.box-full-2 {
+  background: url("/assets/imgs/bg_home2.jpg");
+  background-size: cover;
+  background-position: fixed;
+  color: #fff;
+}
+.box-full-3 {
+  background: url("/assets/imgs/bg_home3.jpg");
+  background-size: cover;
+  background-position: fixed;
+  color: #9e9e9e;
+}
+ion-icon[name="trending-up"],
+ion-icon[name="link"] {
+  font-size: 40px;
+  display: block;
+  color: #fff;
+}
+
+ion-icon[name="ios-arrow-round-up-outline"],
+ion-icon[name="ios-person-add-outline"],
+ion-icon[name="ios-clipboard-outline"] {
+  font-size: 30px;
+  display: block;
+  color: #fff;
+}
+
+.p_home_top {
+  margin-bottom: 0px;
+}
+
+.btn-smartjob-small-action {
+  padding: 0 0.9em;
+}
+
+.badge-home {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  font-size: 12px;
+  padding: 8px 0px;
+  margin-bottom: 5px;
+}
+
+.suggest_newuser {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  width: 100%;
+  color: #fff;
+}
+
+.update_profile {
+  background-color: rgb(207, 176, 1);
+}
+
+.update_email {
+  background-color: rgb(233, 123, 64);
+}
+
+.update_level {
+  background: rgb(240, 58, 95);
+}
+
+.suggest_newuser h3 {
+  float: left;
+  font-size: 16px;
+  width: 70%;
+}
+
+.suggest_newuser h4 {
+  float: right;
+  width: 30%;
+  margin-top: 10px;
+}
+
+.suggest_newuser p {
+  font-size: 12px;
+  padding-left: 20px;
+}
+
+.alert-message {
+  overflow-y: auto;
+}

@@ -1,0 +1,104 @@
+<ion-content padding>
+  <p class="p-sign-cross-box">
+    <ion-icon name="close" expand="block" (click)="close()" class="close-form-sign"></ion-icon>
+  </p>
+
+  <form #form="ngForm" (ngSubmit)="login(form)" *ngIf="!success2">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center *ngIf="!success2">
+            <h3>{{'push_email_register'|translate}}</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="email" type="text" placeholder="Email or Phone" ngModel required></ion-input>
+            </ion-item>
+            <p color="danger" style="padding: 10px;border-radius: 10px; color:red;" text-center *ngIf="error">
+              {{'not_find_email'|translate}}
+            </p>
+          </div>
+          <div padding>
+            <ion-button size="large" shape="round" color="success" type="submit" [disabled]="form.invalid"
+              expand="block"> {{'forgot_pass'|translate}} </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+  <form #form2="ngForm" (ngSubmit)="confirmcode(form2)" *ngIf="success2&&!codesuccess">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <h3 *ngIf="success2" style="padding: 10px;border-radius: 10px; color:green;" text-center>
+            {{'send_to_email'|translate}}<br />
+            {{'email'|translate}} : {{email}}
+          </h3>
+          <p text-center>
+            {{'p_code'|translate}}
+          </p>
+          <div padding>
+            <ion-item>
+              <ion-input name="code" type="number" style="font-size: 30px;" placeholder="Code" ngModel required>
+              </ion-input>
+            </ion-item>
+          </div>
+          <p color="danger" style="padding: 10px;border-radius: 10px; color:red;" text-center *ngIf="error_code">
+            {{'pass_not_pass'|translate}}
+          </p>
+          <div padding>
+            <ion-button size="large" shape="round" color="success" type="submit" [disabled]="form2.invalid"
+              expand="block"> {{'send_code'|translate}} </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+  <form *ngIf="codesuccess" [formGroup]="newpass">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div text-center>
+            <h3>{{'push_pass_new'|translate}}</h3>
+          </div>
+          <div padding>
+            <ion-item>
+              <ion-input name="npass" formControlName="Infopassword" [(ngModel)]="data.npass" type="password"
+                placeholder="New password" ngModel required></ion-input>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf=" newpass.get('Infopassword').hasError('minlength') || newpass.get('Infopassword').hasError('maxlength') ||newpass.get('Infopassword').hasError('required') ">
+              <div class="error" *ngIf="newpass.get('Infopassword').hasError('required')">
+                {{'push_pass'|translate}}
+              </div>
+              <div class="error" *ngIf="newpass.get('Infopassword').hasError('minlength') ">
+                {{'length6'|translate}}
+              </div>
+              <div class="error" *ngIf="newpass.get('Infopassword').hasError('maxlength')">
+                {{'length16'|translate}}
+              </div>
+            </ion-item>
+            <ion-item>
+              <ion-input name="cpass" type="password" formControlName="Infocpassword" [(ngModel)]="data.cpass"
+                placeholder="Confirm password" ngModel required></ion-input>
+            </ion-item>
+            <ion-item no-lines
+              *ngIf="newpass.get('Infopassword').value !== newpass.get('Infocpassword').value&&newpass.get('Infocpassword').touched">
+              <div class="error">
+                {{'pass_not_mash'|translate}}
+              </div>
+            </ion-item>
+          </div>
+
+          <div padding>
+            <ion-button size="large" shape="round" color="success" (click)="change_pass(data)"
+              [disabled]="!newpass.valid||newpass.get('Infopassword').value !== newpass.get('Infocpassword').value"
+              expand="block"> {{'change_pass'|translate}} </ion-button>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+</ion-content>

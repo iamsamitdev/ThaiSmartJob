@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>
+      {{'money'|translate}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-segment [(ngModel)]="tsincome">
+    <ion-segment-button value="income">
+      {{'receive'|translate}}
+    </ion-segment-button>
+    <ion-segment-button value="payupgrade">
+      {{'pay_upgrade'|translate}}
+    </ion-segment-button>
+    <!-- <ion-segment-button value="payfee">
+      จ่ายค่าระบบ
+    </ion-segment-button> -->
+  </ion-segment>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="require_login_box" *ngIf="!login_status" style="margin-top: 35vh" text-center>
+    <p text-center>{{'login_b'|translate}}</p>
+    <ion-button color="success" shape="round" size="small" class="btn-smartjob-small-action" (click)="login()">
+      {{'home_page.login_btn' | translate}}</ion-button>
+  </div>
+  <div class="body_content" *ngIf="login_status">
+    <div [ngSwitch]="tsincome">
+      <ion-list *ngSwitchCase="'income'">
+        <ion-list-header>{{'receive'|translate}} <strong style="padding-right: 15px;">{{'total'|translate}} {{income.resive.sum|number}}
+            {{'baht'|translate}}</strong>
+        </ion-list-header>
+        <ion-item *ngFor="let resive of income.resive.data">
+          <ion-avatar slot="start">
+            <img src="{{resive.img}}">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{resive.fullname}} | {{resive.bank}} {{resive.amount}} {{'baht'|translate}} (Level {{resive.to_level}})
+            </h3>
+            <p>{{resive.description}}</p>
+            <ion-note>{{resive.date_time}}</ion-note>
+
+            <div *ngIf="resive.status=='0'">
+              <ion-button fill="outline" (click)='confirm(resive.tp_id)'>{{confirm|translate}}</ion-button>
+              <ion-button fill="outline" (click)="cancel(resive.tp_id)" color="danger">{{'cancel'|translate}}</ion-button>
+            </div>
+          </ion-label>
+          <!-- <ion-badge slot="end" *ngIf="resive.status=='0'" color="light">รออนุมัติ</ion-badge>
+          <ion-badge slot="end" *ngIf="resive.status=='1'">อนุมติแล้ว</ion-badge>
+          <ion-badge slot="end" *ngIf="resive.status=='2'" color="danger">ยกเลิก</ion-badge> -->
+        </ion-item>
+        <ion-button color="success" size="small" shape="round" expand="block" fill="outline" (click)="load_receive()"
+          *ngIf="income.resive.data.length<income.resive.count">{{'load_add'|translate}}</ion-button>
+      </ion-list>
+      <ion-list *ngSwitchCase="'payupgrade'">
+        <ion-list-header>{{'data_pay_upgrade'|translate}} <strong  style="padding-right: 15px;">{{'total'|translate}} {{income.upgrade.sum|number}}
+            {{'baht'|translate}}</strong>
+        </ion-list-header>
+        <ion-item *ngFor="let upgrade of income.upgrade.data">
+          <ion-avatar slot="start">
+            <img src="{{upgrade.img}}">
+          </ion-avatar>
+          <ion-label>
+            <h3>{{upgrade.fullname}} <br /> {{upgrade.bank}} {{upgrade.amount}} {{'baht'|translate}} (Level
+              {{upgrade.to_level}})</h3>
+            <p>{{upgrade.description}}</p>
+            <ion-note>{{upgrade.date_time}}</ion-note>
+          </ion-label>
+          <ion-badge slot="end" *ngIf="upgrade.status=='0'" color="light">{{'w_confirm'|translate}}</ion-badge>
+          <ion-badge slot="end" *ngIf="upgrade.status=='1'">{{'confirm_f'|translate}}</ion-badge>
+          <ion-badge slot="end" *ngIf="upgrade.status=='2'" color="danger">{{'cancel'|translate}}</ion-badge>
+        </ion-item>
+        <ion-button color="success" size="small" shape="round" expand="block" fill="outline" (click)="load_upgrade()"
+          *ngIf="income.upgrade.data.length<income.upgrade.count">{{'load_add'|translate}}</ion-button>
+      </ion-list>
+    </div>
+  </div>
+  <ion-fab *ngIf="tsincome=='payupgrade'&&login_status" vertical="bottom" horizontal="end" edge slot="fixed">
+    <ion-fab-button (click)="upgrade_click()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'add_day_app'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <strong>
+        {{'detail_add_day'|translate}}
+      </strong>
+    </ion-card-header>
+    <ion-card-content>
+      {{'detail_add_days'|translate}}
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <strong>
+        {{'please_select_day'|translate}}
+      </strong>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-label>{{'number_day'|translate}}</ion-label>
+        <ion-select placeholder="{{'number_day'|translate}}" [(ngModel)]="day" value="30" (ionChange)="change_day(day)">
+          <ion-select-option value="30">30 {{'day'|translate}}</ion-select-option>
+          <ion-select-option value="100">90 {{'day'|translate}} (+ {{'free'|translate}} 10 {{'day'|translate}})
+          </ion-select-option>
+          <ion-select-option value="200">180 {{'day'|translate}} (+ {{'free'|translate}} 20 {{'day'|translate}})
+          </ion-select-option>
+          <ion-select-option value="300">270 {{'day'|translate}} (+ {{'free'|translate}} 30 {{'day'|translate}})
+          </ion-select-option>
+          <ion-select-option value="400">360 {{'day'|translate}} (+ {{'free'|translate}} 40 {{'day'|translate}})
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'amount_total'|translate}}</ion-label>
+        <ion-label text-right><strong>{{payment|number}} {{'baht'|translate}}</strong></ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <strong>
+        {{'payment_method'|translate}}
+      </strong>
+    </ion-card-header>
+    <ion-card-header>
+      {{'qr_payment'|translate}}
+    </ion-card-header>
+    <ion-card-content>
+      <ion-img [src]="src" (click)="view(src)"></ion-img>
+    </ion-card-content>
+  </ion-card>
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col text-center>
+        <ion-button (click)="download()">ดาวห์โหลดไว้ในเครื่อง</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8>
+        <ion-button expand="block" fill="outline" color="success" (click)="confirm_payment()">{{'noti_payment'|translate}}
+        </ion-button>
+      </ion-col>
+      <ion-col col-4>
+        <ion-button expand="block" fill="outline" color="dark" (click)="close()">{{'close'|translate}}</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

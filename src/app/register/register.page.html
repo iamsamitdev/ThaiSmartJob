@@ -1,0 +1,236 @@
+<ion-content padding>
+  <p class="p-sign-cross-box">
+    <ion-icon name="close" expand="block" routerLink="/findsponsor" routerDirection="root" class="close-form-sign">
+    </ion-icon>
+
+  </p>
+  <h1 text-center>{{'register'|translate}}</h1>
+  <ion-list>
+
+    <form [formGroup]="signupForm">
+
+      <ion-item>
+        <ion-label>{{'username'|translate}}</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.username" formControlName="Infousername" name="Infousername"
+          [class.error1]="!signupForm.controls.Infousername.valid && signupForm.controls.Infousername.dirty">
+
+        </ion-input>
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="(signupForm.get('Infousername').hasError('minlength') || signupForm.get('Infousername').hasError('maxlength') ||signupForm.get('Infousername').hasError('pattern') ||signupForm.get('Infousername').hasError('required') ) && signupForm.get('Infousername').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infousername').hasError('required') && signupForm.get('Infousername').touched">
+          {{'push_user'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infousername').hasError('minlength') && signupForm.get('Infousername').touched">
+          {{'length7'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infousername').hasError('maxlength') && signupForm.get('Infousername').touched">
+          {{'length32'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infousername').hasError('pattern') && signupForm.get('Infousername').touched">
+          {{'text_az'|translate}}
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'set_pass'|translate}}</ion-label>
+        <a (click)="show_pass()" style="position: absolute;
+        right: 0px;
+        font-size: 33px;
+        top: 9px;
+        color: #000;">
+          <ion-icon name="eye" *ngIf="type_password=='password'"></ion-icon>
+
+          <ion-icon name="eye-off" *ngIf="type_password=='text'"></ion-icon>
+        </a>
+        <ion-input type="{{type_password}}" [(ngModel)]="userData.password" formControlName="Infopassword"
+          name="Infopassword">
+        </ion-input>
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="( signupForm.get('Infopassword').hasError('minlength') || signupForm.get('Infopassword').hasError('maxlength') ||signupForm.get('Infopassword').hasError('required') ) && signupForm.get('Infopassword').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infopassword').hasError('required') && signupForm.get('Infopassword').touched">
+          {{'push_pass'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infopassword').hasError('minlength') && signupForm.get('Infopassword').touched">
+          {{'length6'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infopassword').hasError('maxlength') && signupForm.get('Infopassword').touched">
+          {{'length16'|translate}}
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'name_sname'|translate}}</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.fullname" name="Infofullname" formControlName="Infofullname">
+        </ion-input>
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="(signupForm.get('Infofullname').hasError('minlength') || signupForm.get('Infofullname').hasError('maxlength') ||signupForm.get('Infofullname').hasError('pattern') ||signupForm.get('Infofullname').hasError('required') ) && signupForm.get('Infofullname').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infofullname').hasError('required') && signupForm.get('Infofullname').touched">
+          {{'set_name'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infofullname').hasError('minlength') && signupForm.get('Infofullname').touched">
+          {{'langth3'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infofullname').hasError('maxlength') && signupForm.get('Infofullname').touched">
+          {{'langth64'|translate}}
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'gender'|translate}}</ion-label>
+        <ion-select okText="ตกลง" [(ngModel)]="userData.gender" value="1" cancelText="ปิดออก"
+          formControlName="Infogender" name="Infogender">
+          <ion-select-option value="1">{{'male'|translate}}</ion-select-option>
+          <ion-select-option value="2">{{'female'|translate}}</ion-select-option>
+          <ion-select-option value="3">{{'othor_gender'|translate}}</ion-select-option>
+        </ion-select>
+
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>{{'bd'|translate}}</ion-label>
+        <ion-datetime display-format="DD/MM/YYYY" [(ngModel)]="userData.birthdate" formControlName="Infobirthdate"
+          name="Infobirthdate"
+          [class.error1]="!signupForm.controls.Infobirthdate.valid && signupForm.controls.Infobirthdate.dirty">
+        </ion-datetime>
+
+
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="signupForm.get('Infobirthdate').hasError('required')  && signupForm.get('Infobirthdate').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infobirthdate').hasError('required') && signupForm.get('Infobirthdate').touched">
+          วัน/เดือน/ปีเกิด (ค.ศ) เช่น 15/07/1982
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infobirthdate').hasError('minlength') && signupForm.get('Infobirthdate').touched">
+          {{'bd_format'|translate}}
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>{{'email'|translate}}</ion-label>
+        <ion-input type="email" [(ngModel)]="userData.email" formControlName="Infoemail" name="Infoemail"
+          [class.error1]="!signupForm.controls.Infoemail.valid && signupForm.controls.Infoemail.dirty"></ion-input>
+
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="(signupForm.get('Infoemail').hasError('required') || signupForm.get('Infoemail').hasError('pattern'))  && signupForm.get('Infoemail').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infoemail').hasError('required') && signupForm.get('Infoemail').touched">
+          {{'push_email'|translate}}
+        </div>
+        <div class="error"
+          *ngIf="signupForm.get('Infoemail').hasError('pattern') && signupForm.get('Infoemail').touched">
+          {{'format_email'|translate}}
+        </div>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label>{{'phone'|translate}}</ion-label>
+        <ion-input type="tel" [(ngModel)]="userData.mobile" [brmasker]="{mask:'000-000-0000', len:12, type:'num'}"
+          formControlName="Infomobile" name="Infomobile"
+          [class.error1]="!signupForm.controls.Infomobile.valid && signupForm.controls.Infomobile.dirty"></ion-input>
+
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="signupForm.get('Infomobile').hasError('required')  && signupForm.get('Infomobile').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infomobile').hasError('required') && signupForm.get('Infomobile').touched">
+          {{'push_phone'|translate}}
+        </div>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'select_bank'|translate}}</ion-label>
+        <ion-select [(ngModel)]="userData.bank" value="kbank" formControlName="Infobank" name="Infobank">
+          <ion-select-option value="kbank">{{'kbank'|translate}}</ion-select-option>
+          <ion-select-option value="scb">{{'scb'|translate}}</ion-select-option>
+          <ion-select-option value="bbl">{{'bbl'|translate}}</ion-select-option>
+          <ion-select-option value="tmb">{{'tmb'|translate}}</ion-select-option>
+          <ion-select-option value="bay">{{'bay'|translate}}</ion-select-option>
+          <ion-select-option value="ktb">{{'ktb'|translate}}</ion-select-option>
+          <ion-select-option value="gsb">{{'gsb'|translate}}</ion-select-option>
+          <ion-select-option value="tbank">{{'tbank'|translate}}</ion-select-option>
+          <ion-select-option value="uob">{{'uob'|translate}}</ion-select-option>
+          <ion-select-option value="cimb">{{'cimb'|translate}}</ion-select-option>
+          <ion-select-option value="kkp">{{'kkp'|translate}}</ion-select-option>
+          <ion-select-option value="tisco">{{'tisco'|translate}}</ion-select-option>
+          <ion-select-option value="ghb">{{'ghb'|translate}}</ion-select-option>
+          <ion-select-option value="baac">{{'baac'|translate}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>{{'bank_account'|translate}}</ion-label>
+        <ion-input type="tel" [(ngModel)]="userData.bank_account" [brmasker]="{type:'num'}"
+          [class.error1]="!signupForm.controls.Infoaccnumber.valid && signupForm.controls.Infoaccnumber.dirty"
+          formControlName="Infoaccnumber" name="Infoaccnumber">
+
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>PayPal <strong>paypal.me/</strong></ion-label>
+        <ion-input type="text" [(ngModel)]="userData.paypal_account" formControlName="Infopaypal" name="Infopaypal"
+          [class.error1]="!signupForm.controls.Infopaypal.valid && signupForm.controls.Infopaypal.dirty"></ion-input>
+      </ion-item>
+
+      <ion-item no-lines
+        *ngIf="signupForm.get('Infopaypal').hasError('required')  && signupForm.get('Infopaypal').touched">
+        <div class="error"
+          *ngIf="signupForm.get('Infopaypal').hasError('pattern') && signupForm.get('Infopaypal').touched">
+          {{'format_account'|translate}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>Messanger <strong>m.me/</strong></ion-label>
+        <ion-input type="text" [(ngModel)]="userData.fbprofile" formControlName="Infofbprofile" name="Infofbprofile"
+          [class.error1]="!signupForm.controls.Infofbprofile.valid && signupForm.controls.Infofbprofile.dirty">
+        </ion-input>
+        <div class="error"
+          *ngIf="!signupForm.controls.Infofbprofile.valid && signupForm.controls.Infofbprofile.dirty&&signupForm.get('Infofbprofile').touched">
+          {{'push_fb'|translate}}
+        </div>
+      </ion-item>
+      <ion-item>
+        <ion-label>Line ID</ion-label>
+        <ion-input type="text" [(ngModel)]="userData.lineid" formControlName="Infolindid" name="Infolindid"
+          [class.error1]="!signupForm.controls.Infolindid.valid && signupForm.controls.Infolindid.dirty">
+        </ion-input>
+        <div class="error"
+          *ngIf="!signupForm.controls.Infolindid.valid && signupForm.controls.Infolindid.dirty&&signupForm.get('Infolindid').touched">
+          {{'push_line'|translate}}
+        </div>
+      </ion-item>
+      <ion-input [hidden]="true"></ion-input>
+    </form>
+    <div padding>
+      <ion-button expand="block" fill="outline" shope="round" color="success" (click)="signup()"
+        [disabled]="!signupForm.valid">{{'register'|translate}}</ion-button>
+
+    </div>
+
+  </ion-list>
+</ion-content>

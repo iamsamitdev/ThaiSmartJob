@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>
+      {{'tab_menu.team'|translate}}
+    </ion-title>
+  </ion-toolbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="tsteam">
+      <ion-segment-button value="downline">
+        {{'member_data'|translate}}
+      </ion-segment-button>
+      <ion-segment-button value="upline">
+        {{'admin_data'|translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="require_login_box" style="margin-top: 35vh" *ngIf="!login_status" text-center>
+    <p text-center>{{'login_b'|translate}}</p>
+    <ion-button size="small" color="success" shape="round" class="btn-smartjob-small-action" (click)="login()">
+      {{'home_page.login_btn' | translate}}</ion-button>
+  </div>
+  <div class="body_content" *ngIf="login_status">
+    <div [ngSwitch]="tsteam">
+
+
+      <ion-list *ngSwitchCase="'downline'">
+        <ion-searchbar [(ngModel)]="search_downline" *ngIf="show_search"></ion-searchbar>
+        <ion-list-header>{{'member_all'|translate}} {{count_member}} {{'user'|translate}}
+
+
+        </ion-list-header>
+        <ion-icon name="search" (click)="search()" style="    position: absolute;
+ right: 15px;
+ font-size: 26px;
+ margin-top: -37px;
+ color: #838383;" slot="end"></ion-icon>
+        <ion-item *ngFor="let member of downline_res" (click)="parent_member(member.id,member.fullname)">
+          <ion-avatar slot="start">
+            <img src="{{member.imgprofile}}">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{member.fullname}} </h2>
+            <p>{{'email'|translate}} : {{member.email}}<br />
+              {{'phone'|translate}} : {{member.mobile}}<br />
+              Line ID : {{member.lineid}}
+            </p>
+          </ion-label>
+          <ion-badge slot="end">Level {{member.level}}</ion-badge>
+        </ion-item>
+      </ion-list>
+      <div *ngSwitchCase="'upline'">
+        <div text-center padding class="b_top">
+          <img class="profile" style="width: 100px;height: 100px;" src="{{upline_res.imgprofile}}" />
+        </div>
+        <ion-card style="font-size: 20px;">
+          <ion-card-header>
+            {{'name_sname'|translate}} : {{upline_res.fullname}}
+          </ion-card-header>
+          <ion-card-content style="font-size: 16px;">
+            <div><strong></strong>{{'email'|translate}} : {{upline_res.email}}</div>
+            <div>{{'phone'|translate}} : {{upline_res.mobile}}</div>
+            <div>Line ID : {{upline_res.lineid}}</div>
+            <div>Facebook : {{upline_res.fbprofile}}</div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

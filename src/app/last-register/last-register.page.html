@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'last_register'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let member of downline_res">
+      <ion-avatar slot="start">
+        <img src="{{member.imgprofile}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{member.fullname}} </h2>
+        <p>{{'email'|translate}} : {{member.email}}<br />
+          {{'phone'|translate}} : {{member.mobile}}<br />
+          Line ID : {{member.lineid}}
+        </p>
+        <ion-note item-end>{{date}} {{member.create_at}}</ion-note>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

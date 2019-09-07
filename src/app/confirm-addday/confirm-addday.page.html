@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'member_addday'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let team1 of payments">
+      <ion-avatar slot="start" (click)="show_detail(team1)">
+        <img src="{{team1.imgprofile}}">
+      </ion-avatar>
+      <ion-label (click)="show_detail(team1)">
+        <h2>{{team1.fullname}}
+        </h2>
+        <p>{{team1.description}}</p>
+        <ion-note slot="end">{{'payment_date'|translate}} {{team1.payment_date}}</ion-note>
+      </ion-label>
+      <div slot="end">
+        <ion-badge slot="end" color="success">{{team1.amount}} {{'baht'|translate}}</ion-badge>
+        <ion-button (click)="team_change(team1)" size="small" shape="round" fill="outline" color="success">
+          {{'options'|translate}}</ion-button>
+      </div>
+
+    </ion-item>
+  </ion-list>
+</ion-content>

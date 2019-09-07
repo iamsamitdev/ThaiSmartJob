@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{title}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close_all()" color="light" fill="outline" shape="round" expand="block">
+        {{'back_home'|translate}}
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let member of teamlast" (click)="member_click(member)">
+      <ion-avatar slot="start">
+        <img src="{{member.imgprofile}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{member.fullname}} </h2>
+        <p>{{'email'|translate}} : {{member.email}}<br />
+          {{'phone'|translate}} : {{member.mobile}}<br />
+          Line ID : {{member.lineid}}
+        </p>
+        <ion-note item-end>{{member.create_at}}</ion-note>
+      </ion-label>
+      <ion-badge slot="end">Level {{member.level}}</ion-badge>
+    </ion-item>
+    <div *ngIf="teamlast.length==0" text-center>{{'not_team'|translate}}</div>
+  </ion-list>
+
+</ion-content>

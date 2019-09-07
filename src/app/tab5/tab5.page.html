@@ -1,0 +1,114 @@
+<ion-content>
+  <div style="margin-top: 45vh" *ngIf="!login_status" text-center>
+    <p text-center>{{login_b|translate}}</p>
+    <ion-button color="success" shape="round" size="small" class="btn-smartjob-small-action" (click)="login()">
+      {{'home_page.login_btn' | translate}}
+    </ion-button>
+  </div>
+  <div class="body_content" *ngIf="login_status">
+    <div class="row b_bottom">
+      <ion-grid class="b_bottom_content">
+        <ion-row>
+          <ion-col size="3">
+            <img src="{{avatar_welcome}}" style="width: 80px;height: 80px;" alt="" (click)="editProfile()">
+          </ion-col>
+          <ion-col size="9">
+            <h2 style="margin-bottom: 0">{{fullname_welcome}}</h2>
+            <p class="p_more_user">{{member_username}}</p>
+            <!-- <ion-button color="warning" shape="round" size="small" class="btn-smartjob-small-action"
+              (click)="showMyQRCode(member_username)">
+              <ion-icon name="qr-scanner"></ion-icon>&nbsp;&nbsp;{{'more_menu.myqrcode' | translate}}
+            </ion-button> -->
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9">
+            <ion-col text-left>
+              <ion-button color="{{status_color}}" (click)="add_day()" shape="round" size="small" class="btn-smartjob-small-action">
+                {{member_status}}</ion-button>
+              <ion-button color="btnblue" (click)="level_click()" shape="round" size="small" fill="outline"
+                class="btn-smartjob-small-action">Level {{member_level}}</ion-button>
+            </ion-col>
+          </ion-col>
+          <ion-col size="3" text-right>
+            <ion-button color="success" size="small" shape="round" (click)="editProfile()">
+              <ion-icon name="create"></ion-icon>
+              {{'more_menu.edit' | translate}}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+    <div class="list-menu-more">
+      <ion-list>
+        <ion-item>
+          <ion-icon name="globe" slot="start"></ion-icon>
+          <ion-label>{{'more_menu.language' | translate}}</ion-label>
+          <ion-select [(ngModel)]="lang" (ionChange)="switchLanguage()">
+            <ion-select-option value="en">English</ion-select-option>
+            <ion-select-option value="th">ไทย</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item (click)="setting()">
+          <ion-icon name="settings" slot="start"></ion-icon>
+          {{'more_menu.setting' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item>
+
+        <!-- <ion-item>
+          <ion-icon name="star" slot="start"></ion-icon>
+          {{'more_menu.points' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item> -->
+
+        <!-- <ion-item>
+          <ion-icon name="cart" slot="start"></ion-icon>
+          {{'more_menu.products' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item> -->
+
+        <!-- <ion-item>
+          <ion-icon name="heart" slot="start"></ion-icon>
+          {{'more_menu.donate' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item> -->
+
+        <!-- <ion-item>
+          <ion-icon name="help" slot="start"></ion-icon>
+          {{'more_menu.question' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item> -->
+
+        <!-- <ion-item>
+          <ion-icon name="book" slot="start"></ion-icon>
+          {{'more_menu.policy' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item> -->
+
+        <ion-item (click)="contact()">
+          <ion-icon name="mail" slot="start"></ion-icon>
+          {{'more_menu.contact' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item (click)="member_addday()" *ngIf="responseData.is_admin-0==1">
+          <ion-icon name="cash" slot="start"></ion-icon>
+          สมาชิกเติมวันใช้งาน
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item>
+        <ion-item (click)="logout()">
+          <ion-icon name="log-out" slot="start"></ion-icon>
+          {{'more_menu.logout' | translate}}
+          <ion-icon name="ios-arrow-forward" slot="end"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+
+
+
+</ion-content>

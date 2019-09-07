@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back" style="color:#fff;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{data.fullname}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-item>
+      <ion-thumbnail slot="start">
+        <ion-img [src]="data.imgprofile"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{data.fullname}}</h3>
+        <p (click)="tel(data.mobile)">{{data.mobile}}</p>
+      </ion-label>
+    </ion-item>
+    <ion-card-heder>
+      <h3 text-center>
+        {{'detail'|translate}}
+      </h3>
+    </ion-card-heder>
+    <ion-card-content>
+      <ion-row>
+        <ion-col>
+          {{'level_upgrade'|translate}}
+        </ion-col>
+        <ion-col>
+          <strong>
+            Level {{data.to_level}}
+          </strong>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col>
+          {{'date_time'|translate}}
+        </ion-col>
+        <ion-col>
+          <strong>
+            {{data.date_time}}
+          </strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{'payment_channel'|translate}}
+        </ion-col>
+        <ion-col>
+          <strong *ngIf="data.channel=='bank'">
+            <span *ngIf="data.bank=='kbank'">{{'kbank'|translate}}</span>
+            <span *ngIf="data.bank=='scb'">{{'scb'|translate}}</span>
+            <span *ngIf="data.bank=='bbl'">{{'bbl'|translate}}</span>
+            <span *ngIf="data.bank=='tmb'">{{'tmb'|translate}}</span>
+            <span *ngIf="data.bank=='bay'">{{'bay'|translate}}</span>
+            <span *ngIf="data.bank=='ktb'">{{'ktb'|translate}}</span>
+            <span *ngIf="data.bank=='gsb'">{{'gsb'|translate}}</span>
+            <span *ngIf="data.bank=='tbank'">{{'tbank'|translate}}</span>
+            <span *ngIf="data.bank=='uob'">{{'uob'|translate}}</span>
+            <span *ngIf="data.bank=='cimb'">{{'cimb'|translate}}</span>
+            <span *ngIf="data.bank=='kkp'">{{'kkp'|translate}}</span>
+            <span *ngIf="data.bank=='tisco'">{{'tisco'|translate}}</span>
+            <span *ngIf="data.bank=='ghb'">{{'ghb'|translate}}</span>
+            <span *ngIf="data.bank=='baac'">{{'baac'|translate}}</span>
+          </strong>
+          <strong *ngIf="data.channel=='paypal'">
+            Paypal
+          </strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{'amount'|translate}}
+        </ion-col>
+        <ion-col>
+          <strong>
+            {{data.amount|number}} {{'baht'|translate}}
+          </strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          {{'message'|translate}}
+        </ion-col>
+        <ion-col>
+          <strong>
+            {{data.description}}
+          </strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+
+        <ion-col>
+          <ion-img (click)="view(data.slip)" [src]="data.slip"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+
+  </ion-card>
+
+  <ion-row>
+    <ion-col>
+      <ion-button expand="block" color="success" shape="round" fill="outline" (click)="confirm()">
+        {{'confirm'|translate}}
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" color="danger" shape="round" fill="outline" (click)="cancel()">{{'cancel'|translate}}
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="block" color="dark" shape="round" fill="outline" (click)="closeModal()">{{'close'|translate}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

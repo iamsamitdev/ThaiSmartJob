@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="success">
+ 
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back" style="color: #fff;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{'find_sponser'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-radio-group [(ngModel)]="sponsorData.findbytype">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-item>
+              <ion-label>UserID</ion-label>
+              <ion-radio slot="start" value="userid" checked (ionSelect)="radioChecked('userid')"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-label>{{'phone'|translate}}</ion-label>
+              <ion-radio slot="start" value="phone_number" (ionSelect)="radioChecked('phone_number')"></ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-radio-group>
+  </ion-list>
+  <form name="findSponserForm" style="padding:0 20px;">
+    <ion-item>
+      <ion-input *ngIf="type=='userid'" placeholder="{{placeholder_text}}" (keyup.enter)="findsponser()"
+        [(ngModel)]="sponsorData.search_text" name="search_text"></ion-input>
+      <ion-input *ngIf="type=='phone_number'" (keyup.enter)="findsponser()" placeholder="{{placeholder_text}}"
+        type="number" [(ngModel)]="sponsorData.search_text2" name="search_text2">
+      </ion-input>
+      <ion-button color="success" (click)="findsponser()" item-end>
+        <ion-icon name="search"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+  </form>
+  <ion-row style="margin-top: 50px;" *ngIf="isOn">
+    <ion-col col-8 offset-2 text-center>
+      <img src="{{imgprofile}}" class="avatar">
+      <h4>{{fullname}}</h4>
+      <h5>{{'email'|translate}}: {{email}}</h5>
+      <h5>{{'phone'|translate}}: <a href="tel:{{mobile}}">{{mobile}}</a></h5>
+      <ion-button color="success" shape="round" (click)="register()" *ngIf="sponsor_status=='1'">{{'join_team'|translate}}
+      </ion-button>
+      <h5 [innerHTML]="sponsor_status_text" *ngIf="sponsor_status !='1'"></h5>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+<ion-fab vertical="bottom" (click)="scan()" color="warning" horizontal="center" edge slot="fixed">
+  <ion-fab-button color="warning">
+    <ion-icon name="qr-scanner"></ion-icon>
+  </ion-fab-button>
+
+</ion-fab>
+
+<ion-footer style="padding-bottom:0; padding-top: 0">
+  <ion-toolbar color="success">
+    <ion-title text-center>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

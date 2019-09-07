@@ -1,0 +1,58 @@
+<ion-content padding>
+  <p class="p-sign-cross-box">
+    <ion-icon name="close" expand="block" routerLink="/" routerDirection="root" class="close-form-sign"></ion-icon>
+  </p>
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+    <ion-grid>
+      <ion-row color="primary" justify-content-center>
+        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+          <div *ngIf="login_temp && login_temp.length>0&&!login_show">
+            <ion-list>
+              <ion-item style="border-bottom: solid #fff 3px;" *ngFor="let member of login_temp;let i = index"
+                (click)="select(member,i)" color="success">
+                <ion-thumbnail slot="start">
+                  <img src="{{member.imgprofile}}">
+                </ion-thumbnail>
+                <ion-label>
+                  <h1>{{member.fullname}}</h1>
+                </ion-label>
+              </ion-item>
+
+            </ion-list>
+          </div>
+          <div *ngIf="login_temp&& login_temp.length==0||login_show">
+            <div text-center>
+              <h3>{{'login'|translate}}</h3>
+            </div>
+            <div padding>
+              <ion-item>
+                <ion-input name="username" type="text" placeholder="{{'username2'|translate}}" ngModel></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input name="password" type="password" placeholder="{{'password'|translate}}" ngModel></ion-input>
+              </ion-item>
+            </div>
+            <div padding>
+              <ion-button size="large" shape="round" color="success" type="submit" expand="block">{{'login'|translate}}
+              </ion-button>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
+
+
+  <div text-center>
+    <ion-button *ngIf="login_temp && login_temp.length>1&&!login_show" color="success" shape="round" size="small" expand="block"
+      fill="outline" (click)="not_me()"> {{'not_me'|translate}}</ion-button>
+    <ion-button *ngIf="login_temp && login_temp.length==1&&!login_show" color="success" shape="round" size="small" expand="block"
+      fill="outline" (click)="not_me()"> {{'not_have_me'|translate}}</ion-button>
+    <p><a (click)="reset_pass()">{{'forgot_pass'|translate}} </a></p>
+    <p>{{'no_account'|translate}}</p>
+    <ion-button size="small" fill="outline" color="success" shape="round" (click)="register()">{{'register'|translate}}
+    </ion-button>
+
+  </div>
+</ion-content>

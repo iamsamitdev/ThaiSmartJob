@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-searchbar showCancelButton="focus" placeholder="{{name_or_phone|translate}}" #q [showCancelButton]="true"
+      (keyup.enter)="search(q.value)">
+    </ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let member of teamlast" (click)="member_click(member)">
+      <ion-avatar slot="start">
+        <img src="{{member.imgprofile}}">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{member.fullname}} </h2>
+        <p>{{'email'|translate}} : {{member.email}}<br />
+          {{'phone'|translate}} : {{member.mobile}}<br />
+          Line ID : {{member.lineid}}
+        </p>
+        <ion-note item-end>{{member.create_at}}</ion-note>
+      </ion-label>
+      <ion-badge slot="end">Level {{member.level}}</ion-badge>
+    </ion-item>
+    <div text-center *ngIf="teamlast.length==0&&flag">
+      {{'not_data'|translate}}
+    </div>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="close_all()" color="dark">
+      <ion-icon name="close-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

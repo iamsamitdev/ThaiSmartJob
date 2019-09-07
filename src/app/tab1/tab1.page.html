@@ -1,0 +1,114 @@
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="row b_top">
+    <div class="b_top_content">
+      <img src="{{avatar_welcome}}" (click)="avatar_click()" alt="" style="width: 80px; height: 80px;;">
+      <div class="box-c-right" style="color:#fff">
+        <h2>{{textSayTime}}</h2>
+        <p class="p_home_top">{{fullname_welcome}}</p>
+        <p class="p_home_top" *ngIf="login_status">
+          <ion-button color="{{status_color}}" size="small" class="btn-smartjob-small-action" (click)="status_click()"
+            shape="round">
+            {{member_status}}
+          </ion-button>
+          <ion-button color="primary" size="small" class="btn-smartjob-small-action" (click)="upgrade()" shape="round">
+            Level {{member_level}}</ion-button>
+          <ion-button *ngIf="login_status" size="small" slot="icon-only" color="warning" shape="round"
+            (click)="showMyQRCode()">
+            <ion-icon name="qr-scanner"></ion-icon>
+          </ion-button>
+        </p>
+        <p class="p_home_top" *ngIf="!login_status">
+          <ion-button color="success" shape="round" size="small" class="btn-smartjob-small-action" (click)="register()">
+            {{'home_page.register_btn' | translate}}</ion-button>
+          <ion-button color="primary" size="small" shape="round" class="btn-smartjob-small-action" (click)="login()">
+            {{'home_page.login_btn' | translate}}</ion-button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="member_new" *ngIf="member_level-0===0">
+    {{'day3'|translate}}
+  </div>
+  <div class="row" *ngIf="login_status && member_avatar==''&&verify_email!=0">
+    <div class="suggest_newuser update_profile">
+      <h3>
+        <ion-icon name="contact"></ion-icon> {{'not_update'|translate}}
+      </h3>
+      <h4 text-right>
+        <ion-button color="secondary" shape="round" size="small" (click)="editProfile()">{{'update'|translate}}
+        </ion-button>
+      </h4>
+      <p>{{'update_detail'|translate}}</p>
+    </div>
+  </div>
+  <div class="row" *ngIf="login_status && verify_email==0">
+    <div class="suggest_newuser update_email">
+      <h3>
+        <ion-icon name="mail"></ion-icon> {{'not_email'|translate}}
+      </h3>
+      <h4 text-right>
+        <ion-button color="secondary" shape="round" size='small' (click)="verifyemail()">{{'confirm'|translate}}
+        </ion-button>
+      </h4>
+      <p>{{'new_member'|translate}} </p>
+    </div>
+  </div>
+  <div class="row" *ngIf="login_status && member_level==0&& verify_email!=0&& member_avatar!=='' ">
+    <div class="suggest_newuser update_level">
+      <h3>
+        <ion-icon name="timer"></ion-icon> {{'not_upgrade'|translate}}
+      </h3>
+      <h4 text-right>
+        <ion-button color="secondary" shape="round" size="small" (click)="upgrade()">{{'upgrade'|translate}}
+        </ion-button>
+      </h4>
+      <p>{{'new_member2'|translate}}
+      </p>
+    </div>
+  </div>
+  <ion-row>
+    <ion-slides [options]="slideOptsOne" pager autoplay=5000 loop>
+      <ion-slide *ngFor="let s of slides">
+        <img src="{{s.url}}" [src]="s.url" alt="">
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <ion-grid *ngIf="login_status" style="padding: 0px;">
+    <ion-row>
+      <ion-col class="box-hf hf1" text-center (click)="upgrade()">
+        {{'home_page.upgrade_schedule' | translate}}
+        <ion-icon name="trending-up"></ion-icon>
+        {{responseData.upgrade_date}} {{'home_page.day_text' | translate}}
+      </ion-col>
+      <ion-col class="box-hf hf2" (click)="connect_system()">
+        {{'home_page.system_fee' | translate}}
+        <ion-icon name="link"></ion-icon>
+        {{responseData.connect_date}} {{'home_page.day_text' | translate}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-row *ngIf="login_status">
+    <ion-col class="box-cq" (click)="recent_register()">
+      <ion-badge item-end color="danger" class="badge-home">{{responseData.last_member}}</ion-badge>
+      <ion-icon name="clipboard"></ion-icon>
+      {{'home_page.recent_register' | translate}}
+    </ion-col>
+    <ion-col class="box-cq" (click)="upgrade_notify()">
+      <ion-badge item-end color="danger" class="badge-home">{{responseData.noti_upgrade}}</ion-badge>
+      <ion-icon name="arrow-round-up"></ion-icon>
+      {{'home_page.upgrade_notify' | translate}}
+    </ion-col>
+    <ion-col class="box-cq-last" (click)="recent_team()">
+      <ion-badge item-end color="danger" class="badge-home">{{responseData.last_team}}</ion-badge>
+      <ion-icon name="person-add"></ion-icon>
+      {{'home_page.recent_team' | translate}}
+    </ion-col>
+  </ion-row>
+  <div class="row box-cf box-full-2" *ngFor="let s of banners" [ngStyle]="setMyStyles(s.url,s.color)"
+    (click)="banner_click(s.href)">
+    <h2 class="text-title">{{s.text}}</h2>
+  </div>
+</ion-content>

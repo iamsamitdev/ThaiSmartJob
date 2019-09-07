@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'confirm_noti_upgrade'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <div>
+    {{'confirm_payment2'|translate}}
+      </div>
+      <div>
+        <form (ngSubmit)="logForm()">
+          <ion-item>
+            <ion-label>{{'payment_channel'|translate}}</ion-label>
+            <ion-select value="bank" [(ngModel)]="payment.channel" [ngModelOptions]="{standalone: true}" okText="Okay"
+              cancelText="Dismiss">
+              <ion-select-option value="bank">{{'bank'|translate}}</ion-select-option>
+              <ion-select-option value="paypal">Paypal</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'date_payment'|translate}}</ion-label>
+            <ion-icon name="create" slot="end"></ion-icon>
+            <ion-datetime displayFormat="DD/MM/YYYY" [ngModelOptions]="{standalone: true}" [(ngModel)]="payment.date">
+            </ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'time_payment'|translate}}</ion-label>
+            <ion-icon name="create" slot="end"></ion-icon>
+            <ion-datetime displayFormat="H:mm" [ngModelOptions]="{standalone: true}" pickerFormat="H mm"
+              [(ngModel)]="payment.time"></ion-datetime>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'amount'|translate}}</ion-label>
+            <ion-input type="number" style="text-align: right;" [(ngModel)]="payment.amount" readonly name="amount">
+            </ion-input>
+          </ion-item>
+          <ion-item>
+            <div class="picture" *ngIf="picToView==''" (click)="add_slip()">
+              {{'click_add_slip'|translate}}
+            </div>
+            <img src="{{picToView}}" *ngIf="picToView!=''" (click)="add_slip()" [src]="picToView">
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'message'|translate}}</ion-label>
+            <ion-textarea [(ngModel)]="payment.description" name="description"></ion-textarea>
+          </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-8>
+                <ion-button type="submit" [disabled]="picToView==''" expand="block" color="success">{{'send'|translate}}
+                </ion-button>
+              </ion-col>
+              <ion-col col-4>
+                <ion-button color="danger" expand="block" (click)="close()">{{'close'|translate}}</ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </form>
+      </div>
+      </ion-content>

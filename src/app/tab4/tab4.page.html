@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-title>{{'noti'|translate}}</ion-title>
+  </ion-toolbar>
+  <ion-segment [(ngModel)]="tsjnotify">
+    <ion-segment-button value="teams">
+      {{'from_team'|translate}}
+    </ion-segment-button>
+    <ion-segment-button value="systems">
+      {{'form_sys'|translate}}
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="require_login_box" style="margin-top: 35vh" *ngIf="!login_status" text-center>
+    <p text-center>{{'login_b'|translate}}</p>
+    <ion-button color="success" shape="round" size="small" class="btn-smartjob-small-action" (click)="login()">
+      {{'home_page.login_btn' | translate}}</ion-button>
+
+  </div>
+  <div class="body_content" *ngIf="login_status">
+    <div [ngSwitch]="tsjnotify">
+      <ion-list *ngSwitchCase="'teams'">
+        <ion-list-header>{{'from_team'|translate}}</ion-list-header>
+        <ion-item *ngFor="let team1 of noti.team">
+          <ion-avatar slot="start" (click)="show_detail(team1)">
+            <img src="{{team1.img}}">
+          </ion-avatar>
+          <ion-label (click)="show_detail(team1)">
+            <h2>{{team1.fullname}}</h2>
+            <p>{{team1.description}}</p>
+            <ion-note>{{team1.date_time}}</ion-note>
+          </ion-label>
+          <ion-button slot="end" (click)="team_change(team1)" size="small" shape="round" fill="outline" color="success">
+            {{'options'|translate}}</ion-button>
+        </ion-item>
+      </ion-list>
+      <ion-list *ngSwitchCase="'systems'">
+        <ion-list-header>{{'noti_system'|translate}}</ion-list-header>
+        <ion-item *ngFor="let system of noti.system.data" [ngClass]="{'active':system.read===0}" (click)="read(system)">
+          <ion-avatar slot="start">
+            <img src="{{system.img}}">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{system.title}}</h2>
+            <p>{{removeHTMLInfo(system.message)}}</p>
+            <ion-note item-end>{{system.cre_date}}</ion-note>
+          </ion-label>
+        </ion-item>
+        <ion-button color="success" size="small" shape="round" expand="block" fill="outline" (click)="load_system()"
+          *ngIf="noti.system.data.length<noti.system.count">{{'load_add'|translate}}</ion-button>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

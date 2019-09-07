@@ -1,0 +1,26 @@
+<ion-tabs color="success" style="z-index: 555555555555;">
+  <ion-tab-bar slot="bottom" color="success">
+    <ion-tab-button tab="tab1">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>{{'tab_menu.home'|translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tab2">
+      <ion-icon name="people"></ion-icon>
+      <ion-label>{{'tab_menu.team'|translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tab3">
+      <ion-icon name="cash"></ion-icon>
+      <ion-label>{{'tab_menu.finance'|translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tab4">
+      <ion-badge color="danger" *ngIf="noti_count!='0'">{{noti_count}}</ion-badge>
+      <ion-icon name="notifications"></ion-icon>
+      <ion-label>{{'tab_menu.notification'|translate}}</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="tab5">
+      <ion-badge color="danger" *ngIf="extra_count!='0'">{{extra_count}}</ion-badge>
+      <ion-icon name="menu"></ion-icon>
+      <ion-label>{{'tab_menu.more'|translate}}</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

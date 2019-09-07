@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'edit_profile'|translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" text-center>
+        <div class="thumbnail">
+          <!-- <ion-img [src]="picToView" class="portrait"></ion-img> -->
+          <img [src]="picToView" src="{{picToView}}" class="portrait">
+        </div>
+        <ion-button (click)="presentActionSheet()" color="success">
+          <ion-icon name="camera"></ion-icon> {{'select_pic_profile'|translate}}
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <form [formGroup]="signupForm">
+
+          <ion-item>
+            <ion-label floating>{{'email'|translate}}</ion-label>
+            <ion-input type="email" [(ngModel)]="userData.email" formControlName="Infoemail"
+              [class.error1]="!signupForm.controls.Infoemail.valid && signupForm.controls.Infoemail.dirty"></ion-input>
+          </ion-item>
+
+          <ion-item no-lines
+            *ngIf="(signupForm.get('Infoemail').hasError('required') || signupForm.get('Infoemail').hasError('pattern'))  && signupForm.get('Infoemail').touched">
+            <div class="error"
+              *ngIf="signupForm.get('Infoemail').hasError('required') && signupForm.get('Infoemail').touched">
+              {{'push_email'|translate}}
+            </div>
+            <div class="error"
+              *ngIf="signupForm.get('Infoemail').hasError('pattern') && signupForm.get('Infoemail').touched">
+              {{'format_email'|translate}}
+            </div>
+          </ion-item>
+
+
+          <ion-item>
+            <ion-label floating>{{'phone'|translate}}</ion-label>
+            <ion-input type="tel" [(ngModel)]="userData.mobile" [brmasker]="{mask:'000-000-0000', len:12, type:'num'}"
+              formControlName="Infomobile"
+              [class.error1]="!signupForm.controls.Infomobile.valid && signupForm.controls.Infomobile.dirty">
+            </ion-input>
+          </ion-item>
+
+          <ion-item no-lines
+            *ngIf="signupForm.get('Infomobile').hasError('required')  && signupForm.get('Infomobile').touched">
+            <div class="error"
+              *ngIf="signupForm.get('Infomobile').hasError('required') && signupForm.get('Infomobile').touched">
+              {{'push_phone'|translate}}
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>{{'select_bank'|translate}}</ion-label>
+            <ion-select [(ngModel)]="userData.bank" formControlName="Infobank">
+              <ion-select-option value="kbank">{{'kbank'|translate}}</ion-select-option>
+              <ion-select-option value="scb">{{'scb'|translate}}</ion-select-option>
+              <ion-select-option value="bbl">{{'bbl'|translate}}</ion-select-option>
+              <ion-select-option value="tmb">{{'tmb'|translate}}</ion-select-option>
+              <ion-select-option value="bay">{{'bay'|translate}}</ion-select-option>
+              <ion-select-option value="ktb">{{'ktb'|translate}}</ion-select-option>
+              <ion-select-option value="gsb">{{'gsb'|translate}}</ion-select-option>
+              <ion-select-option value="tbank">{{'tbank'|translate}}</ion-select-option>
+              <ion-select-option value="uob">{{'uob'|translate}}</ion-select-option>
+              <ion-select-option value="cimb">{{'cimb'|translate}}</ion-select-option>
+              <ion-select-option value="kkp">{{'kkp'|translate}}</ion-select-option>
+              <ion-select-option value="tisco">{{'tisco'|translate}}</ion-select-option>
+              <ion-select-option value="ghb">{{'ghb'|translate}}</ion-select-option>
+              <ion-select-option value="baac">{{'baac'|translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>{{'bank_account'|translate}}</ion-label>
+            <ion-input type="tel" [(ngModel)]="userData.bank_account" [brmasker]="{type:'num'}"
+              formControlName="Infoaccnumber"
+              [class.error1]="!signupForm.controls.Infoaccnumber.valid && signupForm.controls.Infoaccnumber.dirty">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>PayPal <strong>paypal.me/</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="userData.paypal_account" formControlName="Infopaypal"
+              [class.error1]="!signupForm.controls.Infopaypal.valid && signupForm.controls.Infopaypal.dirty">
+            </ion-input>
+          </ion-item>
+
+          <ion-item no-lines
+            *ngIf="signupForm.get('Infopaypal').hasError('required')  && signupForm.get('Infopaypal').touched">
+            <div class="error"
+              *ngIf="signupForm.get('Infopaypal').hasError('pattern') && signupForm.get('Infopaypal').touched">
+              {{'format_account'|translate}}
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Line ID</ion-label>
+            <ion-input type="text" [(ngModel)]="userData.lineid" formControlName="Infolindid"
+              [class.error1]="!signupForm.controls.Infolindid.valid && signupForm.controls.Infolindid.dirty">
+            </ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Messanger <strong>m.me/</strong></ion-label>
+            <ion-input type="text" [(ngModel)]="userData.fbprofile" formControlName="Infofacebook"
+              [class.error1]="!signupForm.controls.Infofacebook.valid && signupForm.controls.Infofacebook.dirty">
+            </ion-input>
+          </ion-item>
+
+          <ion-input [hidden]="true"></ion-input>
+        </form>
+
+        <div padding>
+          <ion-button shape="round" color="success" expand="block" (click)="updateProfile()">{{'update_data'|translate}}
+          </ion-button>
+        </div>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>

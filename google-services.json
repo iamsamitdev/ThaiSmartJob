@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "453040970852",
+    "firebase_url": "https://thaismartjobdev.firebaseio.com",
+    "project_id": "thaismartjobdev",
+    "storage_bucket": "thaismartjobdev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453040970852:android:0e0033e6bc770b7e",
+        "android_client_info": {
+          "package_name": "com.thaismartjob.appteam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453040970852-pdjaerbu4f28b40lvjo8a0lo4rscs8uv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSGRHzFExIIfeHyerg9ZHvmFDF9UIhQqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453040970852-pdjaerbu4f28b40lvjo8a0lo4rscs8uv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "453040970852-44as6qsnl8q1ngur4rmlev98qk0bdavb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.thaismartjob.appteam"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

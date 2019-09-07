@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-button color="dark" (click)="closeModal()">
+        <ion-icon name="arrow-back" style="color:#fff;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>{{data.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-item>
+
+      <!-- <ion-img [src]="data.img" style="width: 50px;" slot="start"></ion-img> -->
+      <img src="{{data.img}}" style="width: 50px;" slot="start" />
+      <ion-label>{{data.title}}</ion-label>
+    </ion-item>
+    <ion-card-content [innerHTML]="data.message">
+    </ion-card-content>
+    <ion-card-content>
+      <ion-note>{{data.cre_date}}</ion-note>
+    </ion-card-content>
+
+  </ion-card>
+</ion-content>

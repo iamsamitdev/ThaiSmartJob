@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'more_menu.myqrcode' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-row style="margin-top: 100px;">
+    <ion-col col-8 offset-2 text-center>
+      <p><img src="{{qrcodeURL}}" alt=""></p>
+      {{getUserID}}
+      <p>{{'qr_scan'|translate}}</p>
+    </ion-col>
+  </ion-row>
+</ion-content>
